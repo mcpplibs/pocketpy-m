@@ -1,0 +1,53 @@
+// {{project.name}} — Python embedded through import mcpplibs.mwrap.pocketpy:
+// a C++ function registered for scripts, a script run, its result and its
+// errors read back.
+import std;
+import mcpplibs.mwrap.pocketpy;
+
+using namespace mcpplibs::mwrap::pocketpy::macros;  // py_isstr, TypeError …
+
+constexpr std::string_view sample = R"(
+words = 'modules make C libraries feel native'.split()
+result = ' '.join([shout(w) for w in words]) + f' ({len(words)} words)'
+)";
+
+// shout(word): the word in capitals — a C++ function scripts call.
+bool shout(int argc, py_StackRef argv) {
+    if (argc != 1 || !py_isstr(&argv[0])) return TypeError("shout(word) takes one str");
+    std::string word = py_tostr(&argv[0]);
+    std::ranges::transform(word, word.begin(), [](unsigned char c) { return static_cast<char>(std::toupper(c)); });
+    py_newstr(py_retval(), word.c_str());
+    return true;
+}
+
+int main(int argc, char** argv) {
+    std::string script(sample);
+    if (argc > 1) {
+        std::ifstream in(argv[1], std::ios::binary);
+        if (!in) {
+            std::println(std::cerr, "cannot read {}", argv[1]);
+            return 1;
+        }
+        script.assign(std::istreambuf_iterator<char>(in), {});
+    }
+    py_initialize();
+    py_bindfunc(py_getmodule("__main__"), "shout", shout);
+
+    bool ok = py_exec(script.c_str(), argc > 1 ? argv[1] : "<script>", EXEC_MODE, nullptr);
+    if (ok) {
+        // The script's `result`, if it set one.
+        if (py_ItemRef result = py_getglobal(py_name("result")); result && py_str(result)) {
+            std::println("{}", py_tostr(py_retval()));
+        }
+        ok = !py_checkexc();
+    }
+    if (!ok) {
+        char* message = py_formatexc();
+        std::println(std::cerr, "{}", message);
+        py_free(message);
+        py_clearexc(nullptr);
+    }
+    std::println("(PocketPy {})", PK_VERSION);
+    py_finalize();
+    return ok ? 0 : 1;
+}

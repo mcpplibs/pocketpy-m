@@ -1,0 +1,4 @@
+[template]
+description  = "Embed Python with import mcpplibs.mwrap.pocketpy: a C++ function a script calls, a script's result and its errors read back"
+default      = true
+post_message = "Run `mcpp run`, or `mcpp run -- <file.py>` for your own script."
