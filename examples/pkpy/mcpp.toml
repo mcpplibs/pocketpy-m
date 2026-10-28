@@ -1,0 +1,12 @@
+[package]
+name        = "pkpy"
+version     = "0.1.0"
+description = "Run a Python file (source or compiled .pyc), or compile one, through import mcpplibs.mwrap.pocketpy; the host upstream's own tests run on"
+license     = "Apache-2.0"
+
+[targets.pkpy]
+kind = "bin"
+main = "src/main.cpp"
+
+[dependencies]
+"mcpplibs.mwrap.pocketpy" = { path = "../.." }

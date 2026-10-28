@@ -1,0 +1,17 @@
+{
+  "upstream": "https://github.com/pocketpy/pocketpy/archive/refs/tags/v2.2.0.tar.gz",
+  "upstream_sha256": "c67cb6a1422abe26114219d2e58441cbb3625bae6b25901d5b7f6f46b23ae8b3",
+  "pruning": "Nothing of PocketPy is vendored: the interpreter is compat.pocketpy 2.2.0, built from the same tarball. Its README and license are retained here.",
+  "documents": [
+    {
+      "path": "upstream/pocketpy/README.md",
+      "source": "https://github.com/pocketpy/pocketpy/blob/v2.2.0/README.md",
+      "sha256": "4e71fedd81f1775b8025dd0c8f151b16d0fad9a0da28d383fdaf6760ecf1d734"
+    },
+    {
+      "path": "upstream/pocketpy/LICENSE",
+      "source": "https://github.com/pocketpy/pocketpy/blob/v2.2.0/LICENSE",
+      "sha256": "5ad14c41f26ed1b8c9a0039ae566bc7ce00277aec1634220eae5db2bb8fc54ef"
+    }
+  ]
+}

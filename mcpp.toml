@@ -1,0 +1,43 @@
+# Module wrapper; upstream API preserved. Policy: mcpp-index/docs/mwrap.md.
+[package]
+namespace   = "mcpplibs.mwrap"
+name        = "pocketpy"
+version     = "2.2.0"
+description = "PocketPy 2.2.0 C++ modules for mcpp (import mcpplibs.mwrap.pocketpy;): the embedding API of pocketpy.h over compat.pocketpy, its macros as constants and functions"
+license     = "Apache-2.0"
+authors     = ["mcpp-community"]
+repo        = "https://github.com/mcpplibs/pocketpy-m"
+platforms   = ["linux", "macos", "windows"]
+
+[targets.pocketpy]
+kind = "lib"
+
+[build]
+sources      = ["src/*.cppm"]
+# <mwrap/pocketpy/macros.hpp>: the macros a function cannot be.
+include_dirs = ["include"]
+
+[dependencies]
+compat.pocketpy = "2.2.0"
+
+[dev-dependencies]
+compat.gtest = "1.15.2"
+
+[package.metadata.mwrap]
+upstream-version = "2.2.0"
+
+[[runtime.deploy]]
+from = "LICENSE"
+to   = "licenses/pocketpy"
+
+[[runtime.deploy]]
+from = "NOTICE"
+to   = "licenses/pocketpy"
+
+[[runtime.deploy]]
+from = "upstream/pocketpy/README.md"
+to   = "licenses/pocketpy/upstream/pocketpy"
+
+[[runtime.deploy]]
+from = "upstream/pocketpy/LICENSE"
+to   = "licenses/pocketpy/upstream/pocketpy"
