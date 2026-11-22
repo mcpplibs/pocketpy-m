@@ -2,7 +2,7 @@
 [package]
 namespace   = "mcpplibs.mwrap"
 name        = "pocketpy"
-version     = "2.2.0"
+version     = "2.2.0.1"
 description = "PocketPy 2.2.0 C++ modules for mcpp (import mcpplibs.mwrap.pocketpy;): the embedding API of pocketpy.h over compat.pocketpy, its macros as constants and functions"
 license     = "Apache-2.0"
 authors     = ["mcpp-community"]

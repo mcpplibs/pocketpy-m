@@ -28,7 +28,7 @@ bytecode, on a host written against the module.
 ## Getting started
 
 ```sh
-mcpp new scripted --template mcpplibs.mwrap.pocketpy@2.2.0
+mcpp new scripted --template mcpplibs.mwrap.pocketpy@2.2.0.1
 cd scripted
 mcpp run
 ```
@@ -38,7 +38,7 @@ and prints the script's result, or its error with the traceback.
 
 ```toml
 [dependencies]
-"mcpplibs.mwrap.pocketpy" = "2.2.0"
+mcpplibs.mwrap.pocketpy = "2.2.0.1"
 ```
 
 ```cpp
