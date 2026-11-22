@@ -27,7 +27,7 @@ PocketPy 2.2.0 是一个无依赖的 C11 库，用来运行 Python 3 代码。�
 ## 快速开始
 
 ```sh
-mcpp new scripted --template mcpplibs.mwrap.pocketpy@2.2.0
+mcpp new scripted --template mcpplibs.mwrap.pocketpy@2.2.0.1
 cd scripted
 mcpp run
 ```
@@ -37,7 +37,7 @@ mcpp run
 
 ```toml
 [dependencies]
-"mcpplibs.mwrap.pocketpy" = "2.2.0"
+mcpplibs.mwrap.pocketpy = "2.2.0.1"
 ```
 
 ```cpp
